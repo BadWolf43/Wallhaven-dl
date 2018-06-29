@@ -137,13 +137,13 @@ def main():
                 if not os.path.exists(osPath):
                     imgreq = requests.get(iurl, cookies=cookies)
                     if imgreq.status_code == 200:
-                        print("Downloading : %s - %s / %s" % ((os.path.basename(iurl)), currentImage , totalImage))
+                        print("Downloading : %s - %s / %s" % (os.path.basename(iurl), currentImage , totalImage))
                         with open(osPath, 'ab') as imageFile:
                             for chunk in imgreq.iter_content(1024):
                                 imageFile.write(chunk)
                         break
                 else:
-                    print("%s already exist - %s / %s" % os.path.basename(iurl), currentImage , totalImage)
+                    print("%s already exist - %s / %s" % (os.path.basename(iurl), currentImage , totalImage))
 
 if __name__ == '__main__':
     main()
