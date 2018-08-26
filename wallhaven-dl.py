@@ -30,12 +30,12 @@ def category():
     print('''****************************************************************
                             Category Codes
 
-    all     - Every wallpaper.
-    general - For 'general' wallpapers only.
-    anime   - For 'Anime' Wallpapers only.
-    people  - For 'people' wallapapers only.
-    ga      - For 'General' and 'Anime' wallapapers only.
-    gp      - For 'General' and 'People' wallpapers only.
+    [1]---> all     - For 'Every' wallpaper.
+    [2]---> general - For 'General' wallpapers only.
+    [3]---> anime   - For 'Anime' Wallpapers only.
+    [4]---> people  - For 'People' wallapapers only.
+    [5]---> ga      - For 'General' and 'Anime' wallapapers only.
+    [6]---> gp      - For 'General' and 'People' wallpapers only.
     ****************************************************************
     ''')
     ccode = input('Enter Category: ')
@@ -45,37 +45,37 @@ def category():
     PEOPLE = '001'
     GENERAL_ANIME = '110'
     GENERAL_PEOPLE = '101'
-    if ccode.lower() == "all":
+    if ccode.lower() == "1":
         ctag = ALL
-    elif ccode.lower() == "anime":
+    elif ccode.lower() == "3":
         ctag = ANIME
-    elif ccode.lower() == "general":
+    elif ccode.lower() == "2":
         ctag = GENERAL
-    elif ccode.lower() == "people":
+    elif ccode.lower() == "4":
         ctag = PEOPLE
-    elif ccode.lower() == "ga":
+    elif ccode.lower() == "5":
         ctag = GENERAL_ANIME
-    elif ccode.lower() == "gp":
+    elif ccode.lower() == "6":
         ctag = GENERAL_PEOPLE
 
     print('''
     ****************************************************************
                             Purity Codes
 
-    sfw     - For 'Safe For Work'
-    sketchy - For 'Sketchy'
-    nsfw    - For 'Not Safe For Work'
-    ws      - For 'SFW' and 'Sketchy'
-    wn      - For 'SFW' and 'NSFW'
-    sn      - For 'Sketchy' and 'NSFW'
-    all     - For 'SFW', 'Sketchy' and 'NSFW'
+    [1]---> sfw     - For 'Safe For Work'
+    [2]---> sketchy - For 'Sketchy'
+    [3]---> nsfw    - For 'Not Safe For Work'
+    [4]---> ws      - For 'SFW' and 'Sketchy'
+    [5]---> wn      - For 'SFW' and 'NSFW'
+    [6]---> sn      - For 'Sketchy' and 'NSFW'
+    [7]---> all     - For 'SFW', 'Sketchy' and 'NSFW'
     ****************************************************************
     ''')
     pcode = input('Enter Purity: ')
-    ptags = {'sfw':'100', 'sketchy':'010', 'nsfw':'001', 'ws':'110', 'wn':'101', 'sn':'011', 'all':'111'}
+    ptags = {'1':'100', '2':'010', '3':'001', '4':'110', '5':'101', '6':'011', '7':'111'}
     ptag = ptags[pcode]
 
-    if pcode in ['nsfw', 'wn', 'sn', 'all']:
+    if pcode in ['3', '5', '6', '7']:
         cookies = login()
     else:
         cookies = dict()
@@ -99,24 +99,24 @@ def search():
 def main():
     Choice = input('''Choose how you want to download the image:
 
-    Enter "category" for downloading wallpapers from specified categories
-    Enter "latest" for downloading latest wallpapers
-    Enter "search" for downloading wallpapers from search
+    [1]---> category - For downloading wallpapers from specified categories
+    [2]---> latest   - For downloading latest wallpapers
+    [3]---> search   - For downloading wallpapers from search
 
     Enter choice: ''').lower()
-    while Choice not in ['category', 'latest', 'search']:
+    while Choice not in ['1', '2', '3']:
         if Choice != None:
             print('You entered an incorrect value.')
         choice = input('Enter choice: ')
 
-    if Choice == 'category':
+    if Choice == '1':
         BASEURL, cookies = category()
-    elif Choice == 'latest':
+    elif Choice == '2':
         BASEURL, cookies = latest()
-    elif Choice == 'search':
+    elif Choice == '3':
         BASEURL, cookies = search()
 
-    pgid = int(input('How Many pages you want to Download: '))
+    pgid = int(input('How Many pages you want to Download?: '))
     print('Number of Wallpapers to Download: ' + str(24 * pgid))
     for j in range(1, pgid + 1):
         totalImage = str(24 * pgid)
